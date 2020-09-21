@@ -4,14 +4,14 @@ public class Member {
    String Name;
      String Email;
     String Address;
-    Integer Phone;
-    String Username;
+    String Phone;
+     String Username;
       String Password;
 
     public  Member(){
 
     }
-    public Member(String Name,String Email,String Address,int Phone ,String Username,String Password) {
+    public Member(String Name,String Email,String Address,String Phone ,String Username,String Password) {
         this.Name=Name;
         this.Email=Email;
         this.Address=Address;
@@ -48,11 +48,11 @@ public class Member {
         Address = address;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         Phone = phone;
     }
 

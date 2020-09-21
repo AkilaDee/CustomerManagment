@@ -2,6 +2,7 @@ package com.example.customermanagment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -29,8 +30,17 @@ public class MainActivity2 extends AppCompatActivity {
         username = (EditText) findViewById(R.id.Username);
         password = (EditText) findViewById(R.id.Password);
         log=(Button)findViewById(R.id.button4) ;
-        reg=(Button)findViewById(R.id.button3) ;
+        reg=(Button)findViewById(R.id.change) ;
          member=new Member();
+
+
+         log.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                 startActivity(i);
+             }
+         });
         reff = FirebaseDatabase.getInstance().getReference().child("Member");
  reg.setOnClickListener(new View.OnClickListener() {
      @Override
@@ -49,14 +59,14 @@ public class MainActivity2 extends AppCompatActivity {
              }else if (TextUtils.isEmpty(password.getText().toString())){
                  Toast.makeText(getApplicationContext(),"Please Enter the name",Toast.LENGTH_SHORT).show();
              }else{
-                 int ph=Integer.parseInt(phone.getText().toString().trim());
+
                  member.setName(name.getText().toString().trim());
                  member.setEmail(email.getText().toString().trim());
                  member.setAddress(address.getText().toString().trim());
-                 member.setPhone(ph);
+                 member.setPhone(phone.getText().toString().trim());
                  member.setUsername(username.getText().toString().trim());
                  member.setPassword(password.getText().toString().trim());
-                 reff.push().setValue(member);
+                 reff.child(username.getText().toString()).setValue(member);
                  Toast.makeText(getApplicationContext(),"Data Saved Successfully",Toast.LENGTH_SHORT).show();
              }
          }   catch (NumberFormatException e){
